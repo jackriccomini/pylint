@@ -874,7 +874,7 @@ class VariablesChecker(BaseChecker):
                     continue
 
                 line = definition.fromlineno
-                if not self._is_name_ignored(stmt, name):
+                if not self._is_name_ignored(stmt, name) and not isinstance(stmt, astroid.Import):
                     self.add_message(
                         "redefined-outer-name", args=(name, line), node=stmt
                     )
